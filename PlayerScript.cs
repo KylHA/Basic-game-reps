@@ -24,11 +24,20 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.name == "EnemyRange")
+        {
+            Destroy(collision.gameObject);
+            //when mouse position raycasted on enemy area if enemy range hit true? : select little area close to enemyrange
+            //in between enemyrange and char then if clicked: set destination to area
+            Debug.Log("Entered enemy range");
+        }
         if (collision.gameObject.tag == "Item")
         {
             Destroy(collision.gameObject);
             playerInventory.AddItemToCharbyName(collision.gameObject.name);
         }
+
+        
     }
     private void Update()
     {

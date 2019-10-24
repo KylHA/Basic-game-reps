@@ -43,6 +43,14 @@ public class PlayerBehavior : MonoBehaviour
 
             //İf Click is out of walkable surface bounds do not add to list
             //Add position check for size bounds on walkable obj because of Nav mesh's Bake Area
+
+            if (hit.collider != null && hit.collider.tag =="Enemy" )
+            {
+                Vector3 closestPoint = hit.collider.ClosestPoint(GameObject.Find("Agent").GetComponent<Transform>().position);
+                closestPoint.y = GameObject.Find("Agent").GetComponent<Transform>().position.y;
+                Temppoint = closestPoint;
+            }//crashes move ability never reaches x and z coordinats FİX!
+
             if (!(Temppoint.x == 0 || Temppoint.z == 0))
             {
                 vektor3list.Add(Temppoint);
