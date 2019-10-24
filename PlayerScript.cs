@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
        testweapon = Instantiate(Weapon, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        playerInventory.AddItemToCharbyName("Sword");
+        playerInventory.AddItemToCharbyName("Gun");
         EquipPlayerWeapon(1);
         //playerInventory.AddItemToCharbyName("Lantern");
     }
@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour
 
         if (testweapon.transform.parent == this.transform)
         {
-            Debug.Log(playerInventory.CheckItemID(id).Name.Length
+            Debug.Log(playerInventory.CheckItemID(id).Name
                 +"Weapon attached to object");
         }
     }
