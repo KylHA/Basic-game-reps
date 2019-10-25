@@ -23,8 +23,25 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         SlowTime();
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (SwichFlag)
+            {
+                SwichFlag = false;
+                Debug.Log("Swiched to Attack Mode");
+            }
+
+            else 
+            { 
+                SwichFlag = true;
+                Debug.Log("Swiched to Move Mode");
+            }
+        }
+
         if (SwichFlag)
         {
+            
             moveFromList();
 
             moveOnRClick();
@@ -49,7 +66,8 @@ public class PlayerBehavior : MonoBehaviour
                 Vector3 closestPoint = hit.collider.ClosestPoint(GameObject.Find("Agent").GetComponent<Transform>().position);
                 closestPoint.y = GameObject.Find("Agent").GetComponent<Transform>().position.y;
                 Temppoint = closestPoint;
-            }//crashes move ability never reaches x and z coordinats FİX!
+                Destroy(hit.collider.gameObject);
+            }
 
             if (!(Temppoint.x == 0 || Temppoint.z == 0))
             {
@@ -102,7 +120,15 @@ public class PlayerBehavior : MonoBehaviour
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
             Vector3 Temppoint = new Vector3(hit.point.x, agent.transform.position.y, hit.point.z);
-            
+
+            if (hit.collider != null && hit.collider.tag == "Enemy")
+            {
+                Vector3 closestPoint = hit.collider.ClosestPoint(GameObject.Find("Agent").GetComponent<Transform>().position);
+                closestPoint.y = GameObject.Find("Agent").GetComponent<Transform>().position.y;
+                Temppoint = closestPoint;
+                Destroy(hit.collider.gameObject);
+            }
+
             if (agent.transform.position != Temppoint)
                 agent.destination = Temppoint;
         }
