@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 //Creating A class for Basic needs of an item
 public class Item
 {

@@ -23,29 +23,7 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         SlowTime();
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (SwichFlag)
-            {
-                SwichFlag = false;
-                Debug.Log("Swiched to Attack Mode");
-            }
-
-            else 
-            { 
-                SwichFlag = true;
-                Debug.Log("Swiched to Move Mode");
-            }
-        }
-
-        if (SwichFlag)
-        {
-            
-            moveFromList();
-
-            moveOnRClick();
-        }
+        SwichMode();
     }
 
     void moveFromList()
@@ -147,6 +125,31 @@ public class PlayerBehavior : MonoBehaviour
             { Time.timeScale = 1f; }
 
             count++;
+        }
+    }
+
+    void SwichMode() 
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (SwichFlag)
+            {
+                SwichFlag = false;
+                Debug.Log("Swiched to Attack Mode");
+            }
+
+            else
+            {
+                SwichFlag = true;
+                Debug.Log("Swiched to Move Mode");
+            }
+        }
+
+        if (SwichFlag)
+        {
+            moveFromList();
+
+            moveOnRClick();
         }
     }
 }
